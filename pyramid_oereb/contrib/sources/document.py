@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import logging
+import re
 
 from geolink_formatter import XML
 from requests.auth import HTTPBasicAuth
@@ -140,19 +141,17 @@ class OEREBlexSource(Base):
         for reference in references:
             referenced_records.extend(self._get_document_records(reference))
 
-        # Assign multilingual values
-        title = {self._language: document.title}
-
         # Create related office record
         office = OfficeRecord({self._language: document.authority}, office_at_web=document.authority_url)
 
         # Get files
         records = []
         for f in document.files:
+            filename = re.sub(r'\.pdf', '', f.title, flags=re.IGNORECASE)
             records.append(document_class(
                 law_status=LawStatusRecord.from_config(u'inForce'),
                 published_from=document.enactment_date,
-                title=title,
+                title={self._language: u'{title}, {filename}'.format(title=document.title, filename=filename)},
                 responsible_office=office,
                 text_at_web={self._language: f.href},
                 abbreviation=document.abbreviation,
