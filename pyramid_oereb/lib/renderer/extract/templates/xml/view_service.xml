@@ -6,7 +6,8 @@
 <data:ReferenceWMS>${map.reference_wms|u}</data:ReferenceWMS>
 %endif
 %if map.legend_at_web:
-<data:LegendAtWeb>${map.legend_at_web|u}</data:LegendAtWeb>
+% # TODO: get by lang instead
+<data:LegendAtWeb>${next(iter(map_.legend_at_web.values()))|u}</data:LegendAtWeb>
 %endif
 %if map.legends:
 <%

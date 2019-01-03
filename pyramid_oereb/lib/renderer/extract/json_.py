@@ -483,7 +483,7 @@ class Renderer(Base):
         if map_.reference_wms is not None:
             map_dict['ReferenceWMS'] = map_.reference_wms
         if map_.legend_at_web is not None:
-            map_dict['LegendAtWeb'] = map_.legend_at_web
+            map_dict['LegendAtWeb'] = next(iter(map_.legend_at_web.values()))  # TODO: get by lang instead
         if isinstance(map_.legends, list) and len(map_.legends) > 0:
             other_legend = self.sort_by_localized_text(map_.legends)
 
