@@ -16,7 +16,7 @@ def test_init():
     record = ViewServiceRecord('http://www.test.url.ch',
                                1,
                                1.0,
-                               'http://www.test.url.ch',
+                               'http://www.test.url.ch',  # TODO FIX
                                None)
     assert isinstance(record.reference_wms, str)
     assert isinstance(record.layer_index, int)
@@ -37,7 +37,7 @@ def test_init_with_relation():
     record = ViewServiceRecord('http://www.test.url.ch',
                                1,
                                1.0,
-                               'http://www.test.url.ch',
+                               'http://www.test.url.ch',  # TODO FIX
                                legend_records)
     assert isinstance(record.reference_wms, str)
     assert isinstance(record.layer_index, int)
@@ -106,7 +106,7 @@ def test_get_bbox_from_url():
 def test_view_service_correct_init_ns(config):
     with_bbox = 'https://host/?&SRS=EPSG:2056&BBOX=2475000,1065000,2850000,1300000&' \
                 'WIDTH=493&HEIGHT=280&FORMAT=image/png'
-    test_view_service = ViewServiceRecord(with_bbox, 1, 1.0, 'http://www.test.url.ch', None)
+    test_view_service = ViewServiceRecord(with_bbox, 1, 1.0, 'http://www.test.url.ch', None)  # TODO FIX
     assert isinstance(test_view_service.min_NS95, Point)
     assert test_view_service.min_NS95.x == 2475000.0
     assert test_view_service.min_NS95.y == 1065000.0
@@ -115,6 +115,6 @@ def test_view_service_correct_init_ns(config):
     assert test_view_service.max_NS95.y == 1300000.0
 
     no_bbox = 'https://host/?&SRS=EPSG:2056WIDTH=493&HEIGHT=280&FORMAT=image/png'
-    test_view_service_no_bbox = ViewServiceRecord(no_bbox, 1, 1.0, 'http://www.test.url.ch', None)
+    test_view_service_no_bbox = ViewServiceRecord(no_bbox, 1, 1.0, 'http://www.test.url.ch', None)  # TODO FIX
     assert test_view_service_no_bbox.min_NS95 is None
     assert test_view_service_no_bbox.max_NS95 is None

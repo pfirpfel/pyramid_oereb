@@ -155,14 +155,14 @@ def test_processor_get_legend_entries(law_status):
         'http://www.test1.url.ch',
         1,
         1.0,
-        legend_at_web='http://www.test1.url.ch',
+        legend_at_web='http://www.test1.url.ch',  # TODO FIX
         legends=[legend1, legend2]
     )
     view_service2 = ViewServiceRecord(
         'http://www.test2.url.ch',
         1,
         1.0,
-        legend_at_web='http://www.test2.url.ch',
+        legend_at_web='http://www.test2.url.ch',  # TODO FIX
         legends=[legend3, legend4]
     )
     image = ImageRecord('1'.encode('utf-8'))
