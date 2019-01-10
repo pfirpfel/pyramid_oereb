@@ -162,7 +162,7 @@ def test_get_egrid_response():
         view_service = ViewServiceRecord('test',
                                          1,
                                          1.0,
-                                         'test',  # TODO FIX
+                                         {'lang': 'test'},
                                          None)
         record = RealEstateRecord('test', 'BL', 'test', 1, 100,
                                   MultiPolygon([Polygon([(0, 0), (1, 1), (1, 0)])]), view_service,
